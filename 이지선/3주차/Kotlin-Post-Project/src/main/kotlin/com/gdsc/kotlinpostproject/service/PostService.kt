@@ -2,6 +2,7 @@ package com.gdsc.kotlinpostproject.service
 
 import com.gdsc.kotlinpostproject.domain.model.Post
 import com.gdsc.kotlinpostproject.domain.repo.PostRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -17,7 +18,7 @@ class PostService (
 
     @Transactional(readOnly = true)
     fun findById(postId: Long): Post {
-        return postRepository.findById(postId).get()
+        return postRepository.findByIdOrNull(postId) ?: throw IllegalArgumentException("해당 id의 게시글이 존재하지 않습니다.")
     }
 
     @Transactional
@@ -27,7 +28,7 @@ class PostService (
 
     @Transactional
     fun update(postId: Long, updatePost: Post): Post {
-        var post: Post = postRepository.findById(postId).get()
+        var post: Post = findById(postId)
         post.updatePost(updatePost.title, updatePost.content)
         return post
     }
