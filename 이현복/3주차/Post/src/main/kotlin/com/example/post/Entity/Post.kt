@@ -24,4 +24,8 @@ class Post (
         val comments: MutableList<Comment> = mutableListOf()
 
 ) : BaseTimeEntity() {
+        fun update(post: Post) {
+                this.content = post.content
+                this.title = post.title
+        }
 }
