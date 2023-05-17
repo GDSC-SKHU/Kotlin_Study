@@ -1,5 +1,6 @@
 package com.example.post.Entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import lombok.AllArgsConstructor
 import lombok.Data
 import lombok.NoArgsConstructor
@@ -19,6 +20,7 @@ class Comment (
 
         @ManyToOne
         @JoinColumn(name = "post_id")
+        @JsonIgnore
         var post: Post? = null
 ) : BaseTimeEntity() {
 }

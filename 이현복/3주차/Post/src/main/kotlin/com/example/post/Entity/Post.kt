@@ -20,7 +20,7 @@ class Post (
         @Column(nullable = false)
         var content: String? = null,
 
-        @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL])
+        @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL], orphanRemoval = true)
         val comments: MutableList<Comment> = mutableListOf()
 
 ) : BaseTimeEntity() {

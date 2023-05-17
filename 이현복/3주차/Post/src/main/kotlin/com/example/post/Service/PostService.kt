@@ -4,6 +4,7 @@ import com.example.post.Entity.Post
 import com.example.post.Repository.PostRepository
 import org.springframework.data.crossstore.ChangeSetPersister
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class PostService(
@@ -11,6 +12,7 @@ class PostService(
 ) {
     fun findAll() : List<Post> = postRepository.findAll()
 
+    @Transactional
     fun findById(id:Long) : Post = postRepository.findById(id)
             .orElseThrow{ ChangeSetPersister.NotFoundException() }
 
