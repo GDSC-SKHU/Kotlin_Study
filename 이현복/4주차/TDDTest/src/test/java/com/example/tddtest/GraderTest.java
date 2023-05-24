@@ -39,6 +39,15 @@ class GraderTest {
         assertEquals('A', grader.determineLetterGrade(99));
     }
 
+    @Test
+    void 테스트실패시IllegalArgumentException호출(){
+        var grader = new Grader();
+        // Test가 실패하면 예외처리 되는지 확인하기
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    grader.determineLetterGrade(-1);
+                });
+    }
 
 
 }
