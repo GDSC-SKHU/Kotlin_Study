@@ -82,15 +82,11 @@ class Solution {
 ```Kotlin
 class Solution {
     fun solution(my_string: String, queries: Array<IntArray>): String {
-        var answer: String = my_string
+        var answer = my_string
         for (query in queries) {
-            var temp = answer.substring(query[0], query[1]+1).reversed()
-            var temp2 = answer
-            answer = ""
-            for (i in 0..my_string.length-1) {
-                if (i >= query[0] && i <= query[1]) answer += temp[i-query[0]]
-                else answer += temp2[i]
-            }
+            answer = answer.substring(0, query[0]) +
+                     answer.substring(query[0], query[1]+1).reversed() +
+                     answer.substring(query[1]+1)
         }
         return answer
     }
